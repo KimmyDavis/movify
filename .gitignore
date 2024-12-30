@@ -1,5 +1,6 @@
 package-lock.json
 .env
 node_modules
-__pycahche__
+__pycache__
 .venv
+movify.db

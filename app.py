@@ -225,6 +225,7 @@ def search():
 
 @app.route("/details")
 def details():
+    print(current_user.is_authenticated)
     if not current_user.is_authenticated:
         return redirect(url_for("login_normal"))
     id = request.args.get("id")
@@ -253,5 +254,5 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run(ssl_context="adhoc")
-    # app.run(debug=True)
+    # app.run(ssl_context="adhoc")
+    app.run(debug=True)
