@@ -1,0 +1,101 @@
+{% extends "base.html" %} {% block content %}
+<div class="cont bg-sky-800 text-white w-lvh">
+  <div class="header flex flex-row p-3 items-center gap-3 flex-wrap w-full">
+    <a href="/" class="home text-3xl fixed top-2 left-2 z-50" title="home">
+      <i class="fa-solid fa-house"></i>
+    </a>
+    <div
+      class="h-text w-max flex-col mx-auto flex sm:flex-row gap-x-10 flex-wrap items-center justify-center"
+    >
+      <h1>Showing results for "{{ query }}".</h1>
+      <span>category: {{ category }}</span>
+    </div>
+    <form
+      action="/search"
+      method="get"
+      class="w-max mr-auto sm:mr-0 ml-auto flex flex-row items-center justify-center"
+    >
+      <input type="hidden" name="category" value="movie" />
+      <input
+        type="text"
+        placeholder="search movies by title..."
+        name="query"
+        class="flex-grow h-3/4 mx-2 bg-transparent border-0 border-b-2 border-sky-600 focus:border-sky-200 focus:ring-0"
+        style="background-color: #0003"
+        autocomplete="off"
+      />
+      <button
+        type="submit"
+        class="bg-sky-600 text-white w-max px-5 py-2 h-full rounded-full"
+      >
+        Search
+      </button>
+    </form>
+  </div>
+  <table class="table-auto max-w-screen mt-4">
+    <thead>
+      <tr class="bg-white text-sky-950 *:py-4">
+        <th>Title</th>
+        <th class="border-x-2 border-sky-300 border border-y-0">
+          Release date
+        </th>
+        <th
+          class="border-x-2 border-sky-300 border border-y-0 hidden sm:table-cell"
+        >
+          Overview
+        </th>
+        <th>cover</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for result in results %}
+      <tr
+        class="even:bg-sky-900 bg-sky-800 hover:-hue-rotate-15 duration-200 cursor-pointer relative"
+      >
+        <td class="w-1/4 min-w-36 p-2 align-text-top">
+          <a
+            href="/details?id={{ result.id }}"
+            class="absolute top-0 left-0 w-full h-full bg-transparent"
+          ></a
+          >{{ result.title }}
+        </td>
+        <td
+          class="border-x-2 border-sky-900 border border-y-0 w-1/12 min-w-24 text-center"
+        >
+          {{ result.release_date }}
+        </td>
+        <td class="py-2 px-3 text-justify align-text-top hidden sm:table-cell">
+          {{ result.overview }}
+        </td>
+        <td>
+          {% if not result.poster_path %}
+          <img
+            src="{{ result.backdrop_path | get_image }}"
+            alt="movify-{{ result.title }}-backdrop"
+            class="object-cover w-1/12 min-w-24"
+          />
+          {% else %}
+          <img
+            src="{{ result.poster_path | get_image }}"
+            alt="movify-{{ result.title }}-poster"
+            class="object-cover w-full min-w-28"
+          />
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3" class="text-center justify-center p-10 w-full">
+          <span
+            class="bg-sky-300 text-sky-950 font-bold hover:ring-2 ring-sky-50 hover:text-sky-50 hover:bg-sky-800 cursor-pointer active:bg-sky-600 py-2 px-10 rounded-full"
+            >more...</span
+          >
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+{% endblock %}

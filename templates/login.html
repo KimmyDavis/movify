@@ -1,0 +1,81 @@
+{% extends "base.html" %} {% block content %}
+<div class="w-lvw h-lvh bg-slate-400 overflow-hidden relative flex flex-row">
+  <div
+    class="transparent-bg before:animate-spin before:animate-infinite before:animate-duration-[100000ms] flex justify-center md:items-center pt-5 md:pt-0 px-5 md:px-0 items-start w-full h-full bg-sky-100 md:w-1/2"
+    style="--op: 0.2"
+  >
+    <form
+      action="/login/normal"
+      method="post"
+      class="flex flex-col w-full sm:w-3/4 gap-4 backdrop-blur-sm"
+    >
+      <h1 class="text-3xl font-bold mb-5">Login to movify</h1>
+      <input
+        type="text"
+        name="username"
+        placeholder="username"
+        autocomplete="off"
+        spellcheck="false"
+        required
+        class="bg-transparent border-0 border-b-2 border-slate-500 focus:ring-0 focus:border-black text-slate-700"
+      />
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        required
+        class="bg-transparent border-0 border-b-2 border-slate-500 focus:ring-0 focus:border-black text-slate-700"
+      />
+      <button
+        type="submit"
+        class="bg-slate-700 text-slate-300 px-4 py-2 rounded-full w-max self-end mt-3 hover:bg-slate-300 hover:text-slate-700 hover:ring-2 hover:ring-slate-700"
+      >
+        Login
+      </button>
+      <span class="mt-2"
+        >Don't have an account?
+        <a href="/signup" class="text-sky-500 underline">signup</a>.</span
+      >
+      <span class="w-full border-sky-950 border-t text-center pt-3 mt-1"
+        >Or continue with
+        <a href="/login" class="text-sky-500 underline z-50">google</a></span
+      >
+    </form>
+  </div>
+  <div class="w-1/2 h-full bg-slate-600 text-white hidden md:block">
+    <h1 class="text-center font-bold text-4xl pt-3">Welcome to Movify</h1>
+    <div class="w-3/4 mx-auto mt-10 text-2xl bg-slate-700 p-5">
+      <p>Here you'll find a list of movies with their reviews and overviews.</p>
+      <p>we provide information about movies, actors also recommendations.</p>
+      <p>
+        The data here is adapted from the movie database (tmdb), and all their
+        <a
+          class="text-sky-500"
+          href="https://www.themoviedb.org/api-terms-of-use"
+          >API use regulations apply</a
+        >
+        here.
+      </p>
+    </div>
+  </div>
+  <div class="sand">
+    <div class="pendulums">
+      <div class="pendulum">
+        <div class="bar"></div>
+        <div class="motion">
+          <div class="string"></div>
+          <div class="weight"></div>
+        </div>
+      </div>
+      <div class="pendulum shadow">
+        <div class="bar"></div>
+        <div class="motion">
+          <div class="string"></div>
+          <div class="weight"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

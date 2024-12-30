@@ -1,0 +1,67 @@
+{% extends "base.html" %} {% block content %}
+<div class="flex flex-row w-screen h-screen">
+  <div class="w-1/2 h-full bg-white hidden md:flex justify-center items-center">
+    <img
+      src="../static/images/logo.png"
+      alt="movify-logo"
+      class="w-3/4 animate-wiggle animate-infinite animate-ease-in-out"
+    />
+  </div>
+  <div
+    class="flex justify-center md:items-center pt-5 md:pt-0 px-5 md:px-0 items-start w-full h-full bg-sky-100 md:w-1/2"
+  >
+    <form
+      action="signup"
+      method="post"
+      class="flex flex-col w-full sm:w-3/4 gap-4"
+    >
+      <span class="self-end text-sm italic"
+        >already have an account?
+        <a href="/login/normal" class="text-sky-500 underline">login</a></span
+      >
+      <h1 class="text-3xl font-bold mb-5">Sign Up</h1>
+      <label for="username" class="flex flex-col">
+        <span class="text-lg">Username</span>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="Your username"
+          required
+          autocomplete="off"
+          class="bg-transparent border-0 border-b-2 border-slate-500 focus:ring-0 focus:border-black text-slate-700"
+        />
+      </label>
+      <label for="password" class="flex flex-col">
+        <span>password</span>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+          required
+          class="bg-transparent border-0 border-b-2 border-slate-500 focus:ring-0 focus:border-black text-slate-700"
+        />
+      </label>
+      <label for="password2" class="flex flex-col">
+        <span>Retype passsword</span>
+        <input
+          type="password"
+          name="password2"
+          id="password2"
+          placeholder="repeat password"
+          required
+          class="bg-transparent border-0 border-b-2 border-slate-500 focus:ring-0 focus:border-black text-slate-700"
+        />
+      </label>
+      <button
+        type="submit"
+        class="bg-slate-700 text-slate-300 px-4 py-2 rounded-full w-max self-end mt-3 hover:bg-slate-300 hover:text-slate-700 hover:ring-2 hover:ring-slate-700"
+      >
+        Sign Up
+      </button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

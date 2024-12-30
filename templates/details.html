@@ -1,0 +1,98 @@
+{% extends "base.html" %} {% block content %}
+<div class="major-cont bg-sky-950">
+  <div class="details-image-bg images bg-sky-950">
+    {% for image in images %}
+    <img src="{{ image | get_image }}" alt="movify-bg-image" />
+    {% endfor %}
+  </div>
+  <div
+    class="relative cont w-lvw min-h-lvh bg-transparent backdrop-blur-sm text-white"
+  >
+    <div
+      class="relative the-details flex flex-col items-center justify-center p-4 w-full"
+    >
+      <img
+        src="{{ movie_details.poster_path | get_image }}"
+        alt="movify-{{movie_details.title}}-poster"
+        class="absolute right-2 top-2 w-1/12 min-w-20 ring-2 ring-sky-600 hover:scale-150 z-0 duration-200 origin-top-right hover:z-50"
+      />
+      <a href="/" class="home text-3xl fixed top-2 left-2 w-max" title="home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+      <h1 class="text-2xl z-10">{{movie_details.title}}</h1>
+      <h2 class="text-sky-200 z-10">
+        Release Date: {{movie_details.release_date}}
+      </h2>
+      <div class="overview flex flex-col max-w-5xl">
+        <h2 class="text-xl">Overview:</h2>
+        <p class="z-10">{{movie_details.overview}}</p>
+      </div>
+    </div>
+    <div class="credits px-2" style="background-color: #0005">
+      <h2 class="text-xl pt-2">Credits</h2>
+      <div
+        class="scroll-horizontal credit-wrapper flex flex-row h-32 flex-nowrap overflow-x-scroll gap-x-2 mt-2 pb-10"
+        style="scrollbar-width: none"
+      >
+        {% for credit in credits.cast %}
+        <div
+          class="credit relative aspect-square pointer-events-none select-none"
+        >
+          <img
+            src="{{ credit.profile_path | get_image }}"
+            alt="movify-{{credit.name}}-profile-pic"
+            class="object-top text-xs absolute top-0 left-0 h-full object-cover rounded-full aspect-square hover:rounded-none duration-300 ring-2 ring-sky-600"
+          />
+          <span
+            class="text-xs absolute -bottom-9"
+            style="background-color: #fff2"
+            >{{credit.name}} as {{credit.character}}</span
+          >
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="related_movies pt-3">
+      <h2 class="text-center text-2xl">Recommended Movies</h2>
+      <div
+        class="related scroll-horizontal flex flex-row h-64 gap-2 p-2 overflow-scroll"
+        style="scrollbar-width: none"
+      >
+        {% for movie in related_movies %}
+        <div class="group relative">
+          <div
+            class="add-to-watchlist absolute top-0 right-0 w-max p-1 bg-red-500 z-50 {{movie.id}}"
+            data-movieid="{{movie.id}}"
+            title="add to watchlist"
+          >
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <a href="/details?id={{movie.id}}">
+            <div
+              class="h-full relative w-max pointer-events-none select-none overflow-hidden rounded-3xl"
+              style="aspect-ratio: 2/3"
+            >
+              <img
+                src="{{ movie.poster_path | get_image }}"
+                alt="{{ movie.title }}-movify-poster"
+                class="absolute top-0 left-0 h-80 object-cover group-hover:scale-110 duration-200"
+              />
+              <div
+                class="absolute top-0 left-0 w-full h-1/6 backdrop-blur-sm grid place-items-center"
+              >
+                <h3
+                  class="text-sm text-white w-max mx-auto p-1 text-center h-1/2 rounded-full flex items-center justify-center"
+                  style="background-color: #0005"
+                >
+                  {{movie.title}}
+                </h3>
+              </div>
+            </div></a
+          >
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

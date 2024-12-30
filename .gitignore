@@ -1,0 +1,5 @@
+package-lock.json
+.env
+node_modules
+.__pycahche__
+.venv

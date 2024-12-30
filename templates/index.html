@@ -1,0 +1,290 @@
+{% extends "base.html" %} {% block content %}
+<div class="relative">
+  <span
+    class="toggle text-3xl fixed top-2 left-2 text-sky-600 z-50 backdrop-brightness-200 p-3"
+  >
+    <i class="fa fa-bars" aria-hidden="true"></i>
+  </span>
+  <div class="w-vw h-20 grid place-items-center">
+    <form
+      action="/search"
+      method="get"
+      class="w-1/2 h-3/4 mx-auto flex flex-row items-center justify-center"
+    >
+      <input type="hidden" name="category" value="movie" />
+      <input
+        type="text"
+        placeholder="search movies by title..."
+        name="query"
+        class="flex-grow h-3/4 mx-2 bg-transparent border-0 border-b-2 border-sky-950 focus:border-sky-600 focus:ring-0"
+        autocomplete="off"
+      />
+      <button
+        type="submit"
+        class="bg-sky-600 text-white w-max px-5 py-2 h-full rounded-full"
+      >
+        Search
+      </button>
+    </form>
+  </div>
+  <div class="transparent-bg movie-lists bg-sky-600" style="--op: 0.5">
+    <div class="movie-group-parent">
+      <h2 class="text-3xl pl-5 pt-5 pb-3 flex flex-row text-white font-bold">
+        TRENDING
+        <!-- <a
+          href="#"
+          class="ml-auto mr-10 text-xl self-end text-white animate-pulse -mb-3 italic"
+          >see more...</a
+        > -->
+      </h2>
+      <div
+        class="trending scroll-horizontal flex flex-row h-80 gap-2 p-2 overflow-scroll bg-sky-600"
+        style="scrollbar-width: none"
+      >
+        {% for movie in trending_movies %}
+        <div class="group relative">
+          <div
+            class="add-to-watchlist absolute top-0 right-0 w-max p-1 bg-red-500 z-50 {{movie.id}}"
+            data-movieid="{{movie.id}}"
+            title="add to watchlist"
+          >
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <a href="/details?id={{movie.id}}" class="user-select-none">
+            <div
+              class="h-full relative w-max pointer-events-none select-none overflow-hidden rounded-3xl"
+              style="aspect-ratio: 2/3"
+            >
+              <img
+                src="{{ movie.poster_path | get_image }}"
+                alt="{{ movie.title }}-movify-poster"
+                class="absolute top-0 left-0 h-80 object-cover group-hover:scale-110 duration-200"
+              />
+              <div
+                class="absolute top-0 left-0 w-full h-1/6 backdrop-blur-sm grid place-items-center"
+              >
+                <h3
+                  class="text-sm text-white w-max mx-auto p-1 text-center h-1/2 rounded-full flex items-center justify-center"
+                  style="background-color: #0005"
+                >
+                  {{movie.title}}
+                </h3>
+              </div>
+            </div></a
+          >
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="movie-group-parent">
+      <h2 class="text-3xl pl-5 pb-3 flex flex-row mt-10 text-white font-bold">
+        POPULAR
+        <!-- <a
+          href="#"
+          class="ml-auto mr-10 text-xl self-end text-white animate-pulse -mb-3 italic"
+          >see more...</a
+        > -->
+      </h2>
+      <div
+        class="popular scroll-horizontal flex flex-row h-80 gap-2 p-2 overflow-scroll bg-sky-600"
+        style="scrollbar-width: none"
+      >
+        {% for movie in popular_movies %}
+        <div class="group relative">
+          <div
+            class="add-to-watchlist absolute top-0 right-0 w-max p-1 bg-red-500 z-50 {{movie.id}}"
+            data-movieid="{{movie.id}}"
+            title="add to watchlist"
+          >
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <a href="/details?id={{movie.id}}">
+            <div
+              class="h-full relative w-max pointer-events-none select-none overflow-hidden rounded-3xl"
+              style="aspect-ratio: 2/3"
+            >
+              <img
+                src="{{ movie.poster_path | get_image }}"
+                alt="{{ movie.title }}-movify-poster"
+                class="absolute top-0 left-0 h-80 object-cover group-hover:scale-110 duration-200"
+              />
+              <div
+                class="absolute top-0 left-0 w-full h-1/6 backdrop-blur-sm grid place-items-center"
+              >
+                <h3
+                  class="text-sm text-white w-max mx-auto p-1 text-center h-1/2 rounded-full flex items-center justify-center"
+                  style="background-color: #0005"
+                >
+                  {{movie.title}}
+                </h3>
+              </div>
+            </div></a
+          >
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="movie-group-parent">
+      <h2 class="text-3xl pl-5 pb-3 flex flex-row mt-10 text-white font-bold">
+        TOP RATED
+        <!-- <a
+          href="#"
+          class="ml-auto mr-10 text-xl self-end text-white animate-pulse -mb-3 italic"
+          >see more...</a
+        > -->
+      </h2>
+      <div
+        class="top-rated scroll-horizontal flex flex-row h-80 gap-2 p-2 overflow-scroll bg-sky-600"
+        style="scrollbar-width: none"
+      >
+        {% for movie in top_rated_movies %}
+        <div class="group relative">
+          <div
+            class="add-to-watchlist absolute top-0 right-0 w-max p-1 bg-red-500 z-50 {{movie.id}}"
+            data-movieid="{{movie.id}}"
+            title="add to watchlist"
+          >
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <a href="/details?id={{movie.id}}">
+            <div
+              class="h-full relative w-max pointer-events-none select-none overflow-hidden rounded-3xl"
+              style="aspect-ratio: 2/3"
+            >
+              <img
+                src="{{ movie.poster_path | get_image }}"
+                alt="{{ movie.title }}-movify-poster"
+                class="absolute top-0 left-0 h-80 object-cover group-hover:scale-110 duration-200"
+              />
+              <div
+                class="absolute top-0 left-0 w-full h-1/6 backdrop-blur-sm grid place-items-center"
+              >
+                <h3
+                  class="text-sm text-white w-max mx-auto p-1 text-center h-1/2 rounded-full flex items-center justify-center"
+                  style="background-color: #0005"
+                >
+                  {{movie.title}}
+                </h3>
+              </div>
+            </div></a
+          >
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="movie-group-parent">
+      <h2 class="text-3xl pl-5 pb-3 flex flex-row mt-10 text-white font-bold">
+        NOW PLAYING
+        <!-- <a
+          href="#"
+          class="ml-auto mr-10 text-xl self-end text-white animate-pulse -mb-3 italic"
+          >see more...</a
+        > -->
+      </h2>
+      <div
+        class="now-playing scroll-horizontal flex flex-row h-80 gap-2 p-2 overflow-scroll bg-sky-600"
+        style="scrollbar-width: none"
+      >
+        {% for movie in now_playing_movies %}
+        <div class="group relative">
+          <div
+            class="add-to-watchlist absolute top-0 right-0 w-max p-1 bg-red-500 z-50 {{movie.id}}"
+            data-movieid="{{movie.id}}"
+            title="add to watchlist"
+          >
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <a href="/details?id={{movie.id}}">
+            <div
+              class="h-full relative w-max pointer-events-none select-none overflow-hidden rounded-3xl"
+              style="aspect-ratio: 2/3"
+            >
+              <img
+                src="{{ movie.poster_path | get_image }}"
+                alt="{{ movie.title }}-movify-poster"
+                class="absolute top-0 left-0 h-80 object-cover group-hover:scale-110 duration-200"
+              />
+              <div
+                class="absolute top-0 left-0 w-full h-1/6 backdrop-blur-sm grid place-items-center"
+              >
+                <h3
+                  class="text-sm text-white w-max mx-auto p-1 text-center h-1/2 rounded-full flex items-center justify-center"
+                  style="background-color: #0005"
+                >
+                  {{movie.title}}
+                </h3>
+              </div>
+            </div></a
+          >
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="movie-group-parent">
+      <h2 class="text-3xl pl-5 pb-3 flex flex-row mt-10 text-white font-bold">
+        UPCOMING
+        <!-- <a
+          href="#"
+          class="ml-auto mr-10 text-xl self-end text-white animate-pulse -mb-3 italic"
+          >see more...</a
+        > -->
+      </h2>
+      <div
+        class="upcoming scroll-horizontal flex flex-row h-80 gap-2 p-2 overflow-scroll bg-sky-600"
+        style="scrollbar-width: none"
+      >
+        {% for movie in upcoming_movies %}
+        <div class="group relative">
+          <div
+            class="add-to-watchlist absolute top-0 right-0 w-max p-1 bg-red-500 z-50 {{movie.id}}"
+            data-movieid="{{movie.id}}"
+            title="add to watchlist"
+          >
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <a href="/details?id={{movie.id}}">
+            <div
+              class="h-full relative w-max pointer-events-none select-none overflow-hidden rounded-3xl"
+              style="aspect-ratio: 2/3"
+            >
+              <img
+                src="{{ movie.poster_path | get_image }}"
+                alt="{{ movie.title }}-movify-poster"
+                class="absolute top-0 left-0 h-80 object-cover group-hover:scale-110 duration-200"
+              />
+              <div
+                class="absolute top-0 left-0 w-full h-1/6 backdrop-blur-sm grid place-items-center"
+              >
+                <h3
+                  class="text-sm text-white w-max mx-auto p-1 text-center h-1/2 rounded-full flex items-center justify-center"
+                  style="background-color: #0005"
+                >
+                  {{movie.title}}
+                </h3>
+              </div>
+            </div></a
+          >
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<footer
+  class="footer flex flex-col gap-y-2 z-50 fixed bottom-0 left-1/2 -translate-x-1/2 bg-sky-900 py-10 px-20 rounded-t-full translate-y-3/4 hover:translate-y-0 duration-200"
+>
+  <!-- <i class="fa-solid fa-microchip"></i> -->
+  <a
+    class="button text-white font-lg px-5 rounded-sm"
+    href="/show-watchlist"
+    style="background-color: #0005"
+    >Your watchlist</a
+  >
+  <a
+    class="button text-white font-lg px-5 rounded-sm"
+    href="/logout"
+    style="background-color: #0005"
+    >Logout</a
+  >
+</footer>
+{% endblock %}

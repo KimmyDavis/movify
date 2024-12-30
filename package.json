@@ -1,0 +1,20 @@
+{
+  "name": "movify",
+  "version": "1.0.0",
+  "main": "app.py",
+  "scripts": {
+    "dev": "nodemon -e py,js,html --exec python app.py",
+    "tw-build": "npx tailwindcss -i ./static/css/src/input_styles.css -o ./static/css/bin/output_styles.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.9",
+    "npm-run-all": "^4.1.5",
+    "tailwindcss": "^3.4.16",
+    "tailwindcss-animated": "^1.1.2"
+  }
+}

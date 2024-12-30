@@ -1,0 +1,200 @@
+.sand {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 9vw;
+  min-height: 8rem;
+  background: #ffbd4d;
+}
+
+.pendulums {
+  position: absolute;
+  width: 50px;
+  height: 200px;
+  right: 35vw;
+  top: -120px;
+  perspective: 400px;
+}
+
+.pendulum {
+  position: absolute;
+  width: 50px;
+  height: 200px;
+  right: 44%;
+  top: 0;
+  left: 50%;
+  transform: translateZ(-300px) translateX(-50%);
+}
+
+.pendulum.shadow {
+  top: 263%;
+  left: -65%;
+  bottom: 0;
+  transform-origin: 50% 0;
+  transform: translateX(-50%) scaleY(-1) scaleZ(2) rotateY(-30deg)
+    rotateX(-75deg) translateZ(300px);
+}
+
+.pendulum .bar {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  display: block;
+  width: 20px;
+  height: 200px;
+  background: #333;
+}
+
+.pendulum .string {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 150px;
+  background: #333;
+}
+
+.pendulum .weight {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #333;
+}
+
+.pendulum .motion {
+  position: absolute;
+  height: 200px;
+  width: 50px;
+  transform-origin: 50% 10px;
+  animation: swing 1600ms infinite ease-in-out;
+}
+
+.pendulum.shadow .bar,
+.pendulum.shadow .string,
+.pendulum.shadow .weight {
+  background: #3d3a34;
+}
+
+@keyframes swing {
+  0% {
+    transform: rotate(-45deg);
+  }
+  50% {
+    transform: rotate(45deg);
+  }
+  100% {
+    transform: rotate(-45deg);
+  }
+}
+
+.details-image-bg {
+  position: fixed;
+  opacity: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-50deg);
+  height: 1200px;
+  aspect-ratio: 3/5;
+  display: grid;
+  place-items: center;
+  gap: 50px;
+  grid: repeat(10, 1fr) / repeat(6, 1fr);
+  & > img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: 50% 0;
+    grid-area: 1/1;
+    transform: rotate(50deg);
+    animation: shimer 5s var(--d) linear infinite;
+    &:nth-child(1) {
+      grid-area: 1 / 3 / span 2 / span 2;
+      --d: -0.1s;
+    }
+    &:nth-child(2) {
+      grid-area: 3 / 2 / span 2 / span 2;
+      --d: -0.5s;
+    }
+    &:nth-child(3) {
+      grid-area: 3 / 4 / span 2 / span 2;
+      --d: -0.7s;
+    }
+    &:nth-child(4) {
+      grid-area: 5 / 1 / span 2 / span 2;
+      --d: -1s;
+    }
+    &:nth-child(5) {
+      grid-area: 5 / 3 / span 2 / span 2;
+      --d: -1.4s;
+    }
+    &:nth-child(6) {
+      grid-area: 5 / 5 / span 2 / span 2;
+      --d: -1.7s;
+    }
+    &:nth-child(7) {
+      grid-area: 7 / 2 / span 2 / span 2;
+      --d: -1.9s;
+    }
+    &:nth-child(8) {
+      grid-area: 7 / 4 / span 2 / span 2;
+      --d: -2.8s;
+    }
+    &:nth-child(9) {
+      grid-area: 9 / 3 / span 2 / span 2;
+      --d: -3s;
+    }
+    &:nth-child(10) {
+      position: absolute;
+      height: 40%;
+      width: 80%;
+      z-index: -1;
+      aspect-ratio: 1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(50deg);
+    }
+  }
+}
+
+@keyframes shimer {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* hiding and showing the footer menu */
+footer {
+  transform: translate(-50%, 5rem);
+  &.hide {
+    transform: translate(-50%, 0);
+  }
+}
+
+.transparent-bg {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../images/logo.png");
+    background-size: contain;
+    background-position: left;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: var(--op);
+  }
+}
